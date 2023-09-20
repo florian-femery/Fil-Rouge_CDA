@@ -37,8 +37,8 @@ CREATE TABLE Commandes (
     ClientID INT,
     UtilisateurID INT,
     DateCommande DATE NOT NULL,
-    FOREIGN KEY (ClientID) REFERENCES Clients(ClientID)
-    FOREIGN KEY(UtilisateurID) REFERENCES Utilisateurs(UtilisateurID),
+    FOREIGN KEY (ClientID) REFERENCES Clients(ClientID),
+    FOREIGN KEY(UtilisateurID) REFERENCES Utilisateurs(UtilisateurID)
 );
 
 -- Table de liaison pour les jeux commandés
