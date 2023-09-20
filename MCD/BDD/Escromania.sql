@@ -1,65 +1,92 @@
--- Active: 1692710332644@@127.0.0.1@3306@Escromania
-DROP DATABASE `Escromania`;
-CREATE DATABASE `Escromania`;
-USE `Escromania`;
+-- Active: 1692710332644@@127.0.0.1@3306@MagasinJeuxVideo
+-- Créer la base de données
+CREATE DATABASE MagasinJeuxVideo;
+USE MagasinJeuxVideo;
+DROP DATABASE MagasinJeuxVideo;
 
-CREATE TABLE Client(
-   id_cli INT AUTO_INCREMENT,
-   nom_cli VARCHAR(50) ,
-   prenom_cli VARCHAR(50) ,
-   addr_cli VARCHAR(50) ,
-   mail_cli VARCHAR(50) ,
-   telephone_cli VARCHAR(10) ,
-   PRIMARY KEY(id_cli)
+-- Table pour les utilisateurs
+CREATE TABLE Utilisateurs (
+    UtilisateurID INT PRIMARY KEY AUTO_INCREMENT,
+    NomUtilisateur VARCHAR(50) UNIQUE NOT NULL,
+    MotDePasse VARCHAR(255) NOT NULL,
+    Role ENUM('Client', 'Administrateur') NOT NULL
 );
 
-CREATE TABLE Idéntiffication(
-   id_compte INT AUTO_INCREMENT,
-   mail_compte VARCHAR(50) ,
-   mdp_compte VARCHAR(50) ,
-   id_cli INT,
-   PRIMARY KEY(id_compte),
-   FOREIGN KEY(id_cli) REFERENCES Client(id_cli)
+-- Table pour les jeux
+CREATE TABLE Jeux (
+    JeuID INT PRIMARY KEY AUTO_INCREMENT,
+    Titre VARCHAR(255) NOT NULL,
+    Plateforme VARCHAR(50) NOT NULL,
+    Genre VARCHAR(50),
+    Prix DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE Article(
-   id_article INT AUTO_INCREMENT,
-   nom_article VARCHAR(50) ,
-   description_article VARCHAR(200) ,
-   total_article DECIMAL(10,2)  ,
-   totalttc_article DECIMAL(15,2)  ,
-   tva_article DECIMAL(8,2)  ,
-   id_article_1 INT,
-   PRIMARY KEY(id_article),
-   FOREIGN KEY(id_article_1) REFERENCES Article(id_article)
+-- Table pour les clients
+CREATE TABLE Clients (
+    ClientID INT PRIMARY KEY AUTO_INCREMENT,
+    Nom VARCHAR(100) NOT NULL,
+    Prenom VARCHAR(100) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Telephone VARCHAR(10),
+    Adresse VARCHAR(255)
 );
 
-CREATE TABLE Livraisson(
-   id_cli INT,
-   id_article INT,
-   adresse_livraison VARCHAR(50) ,
-   adresse_facturation VARCHAR(50) ,
-   PRIMARY KEY(id_cli, id_article),
-   FOREIGN KEY(id_cli) REFERENCES Client(id_cli),
-   FOREIGN KEY(id_article) REFERENCES Article(id_article)
+-- Table pour les commandes
+CREATE TABLE Commandes (
+    CommandeID INT PRIMARY KEY AUTO_INCREMENT,
+    ClientID INT,
+    UtilisateurID INT,
+    DateCommande DATE NOT NULL,
+    FOREIGN KEY (ClientID) REFERENCES Clients(ClientID)
+    FOREIGN KEY(UtilisateurID) REFERENCES Utilisateurs(UtilisateurID),
 );
 
-CREATE TABLE Stock(
-   id_article INT,
-   id_article_1 INT,
-   quantite_article DECIMAL(10,2)  ,
-   PRIMARY KEY(id_article, id_article_1),
-   FOREIGN KEY(id_article) REFERENCES Article(id_article),
-   FOREIGN KEY(id_article_1) REFERENCES Article(id_article)
+-- Table de liaison pour les jeux commandés
+CREATE TABLE JeuxCommandes (
+    JeuCommandeID INT PRIMARY KEY AUTO_INCREMENT,
+    CommandeID INT,
+    JeuID INT,
+    Quantite INT NOT NULL,
+    FOREIGN KEY (CommandeID) REFERENCES Commandes(CommandeID),
+    FOREIGN KEY (JeuID) REFERENCES Jeux(JeuID)
 );
 
-CREATE TABLE Payement(
-   id_cli INT,
-   id_article INT,
-   num_carte VARCHAR(16) ,
-   dateexpi_carte DATE,
-   cryptogram_carte VARCHAR(3) ,
-   PRIMARY KEY(id_cli, id_article),
-   FOREIGN KEY(id_cli) REFERENCES Client(id_cli),
-   FOREIGN KEY(id_article) REFERENCES Article(id_article)
+-- Table pour les paiements
+CREATE TABLE Paiements (
+    PaiementID INT PRIMARY KEY AUTO_INCREMENT,
+    CommandeID INT,
+    Montant DECIMAL(10, 2) NOT NULL,
+    DatePaiement DATE NOT NULL,
+    ModePaiement VARCHAR(50) NOT NULL,
+    FOREIGN KEY (CommandeID) REFERENCES Commandes(CommandeID)
 );
+
+-- Exemple d'insertion de données
+INSERT INTO Utilisateurs (NomUtilisateur, MotDePasse, Role) VALUES
+    ('admin', 'motdepasseadmin', 'Administrateur'),
+    ('client1', 'motdepasseclient1', 'Client');
+
+-- Exemple d'insertion de données
+INSERT INTO Jeux (Titre, Plateforme, Genre, Prix) VALUES
+    ('The Witcher 3: Wild Hunt', 'PC', 'RPG', 29.99),
+    ('Grand Theft Auto V', 'PS4', 'Action', 39.99),
+    ('The Legend of Zelda: Breath of the Wild', 'Nintendo Switch', 'Adventure', 49.99);
+
+INSERT INTO Clients (Nom, Prenom, Email, Telephone, Adresse) VALUES
+    ('Dupont', 'Jean', 'jean.dupont@email.com', '0654976231', '123 Rue de la République'),
+    ('Martin', 'Marie', 'marie.martin@email.com', '0755319402', '456 Avenue des Roses');
+
+-- Vous pouvez maintenant créer des commandes en utilisant les tables Commandes et JeuxCommandes.
+
+-- Exemple de création de commande
+INSERT INTO Commandes (ClientID, DateCommande) VALUES
+    (1, '2023-09-20');
+
+-- Exemple d'ajout de jeux à une commande
+INSERT INTO JeuxCommandes (CommandeID, JeuID, Quantite) VALUES
+    (1, 1, 2),
+    (1, 2, 1);
+    
+-- Ajout d'un paiement
+INSERT INTO Paiements (CommandeID, Montant, DatePaiement, ModePaiement) VALUES
+    (1, 109.97, '2023-09-20', 'Carte de crédit');
