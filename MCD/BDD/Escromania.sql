@@ -25,6 +25,13 @@ CREATE TABLE Jeux (
     FOREIGN KEY (CategorieID) REFERENCES Categories(CategorieID)
 );
 
+CREATE TABLE ImagesJeux (
+    ImageID INT PRIMARY KEY AUTO_INCREMENT,
+    JeuID INT,
+    CheminImage VARCHAR(255),
+    FOREIGN KEY (JeuID) REFERENCES Jeux(JeuID)
+);
+
 -- Table pour les clients
 CREATE TABLE Clients (
     ClientID INT PRIMARY KEY AUTO_INCREMENT,
@@ -140,6 +147,10 @@ INSERT INTO Jeux (Titre, Plateforme, Description, Prix, FournisseurID, Categorie
     ('Among Us', 'PC', 'Among Us (litt. « Parmi nous » en anglais) est un jeu vidéo d`ambiance multijoueur en ligne développé
     et édité par le studio InnerSloth. Il est sorti en 2018 sur Android, iOS, Chrome OS puis Windows,
     en 2020 sur Nintendo Switch et en 2021 sur PlayStation 4, PlayStation 5, Xbox One et Xbox Series.', 4.99, 1, 13);
+    
+INSERT INTO ImagesJeux (JeuID, CheminImage) VALUES
+(1, 'chemin/vers/l/image_jeu1.jpg'),
+(2, 'chemin/vers/l/image_jeu2.jpg');
 
 INSERT INTO Clients (Nom, Prenom, Email, Telephone, Adresse) VALUES
     ('Dupont', 'Jean', 'jean.dupont@email.com', '0654976231', '123 Rue de la République'),
