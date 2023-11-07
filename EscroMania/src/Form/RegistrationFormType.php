@@ -19,12 +19,42 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, ['attr' => ['class' => 'form-control'],'label' => 'E-mail'])
-            ->add('lastname', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('firstname', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('addresse', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('zipcode', TextType::class, ['attr' => ['class' => 'form-control']])
-            ->add('city', TextType::class, ['attr' => ['class' => 'form-control']])
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'E-mail'
+            ])
+            ->add('lastname', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Nom'])
+            ->add('firstname', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Prénom'])
+            ->add('addresse', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Adresse'])
+            ->add('zipcode', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Code postal'])
+            ->add('city', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Ville'])
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Télephone'])
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -32,6 +62,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                'label' => 'En m\'inscrivant à ce site j\'accepte...'
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -49,6 +80,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'label' => 'Mot de passe'
             ])
         ;
     }
