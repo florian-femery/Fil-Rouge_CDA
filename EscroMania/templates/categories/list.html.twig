@@ -13,7 +13,7 @@
                     <article class="card h-100 mb-3">
                         <h2 class="card-title">{{ product.name }}</h2>
                         <p class="card-text">{{ product.descriptionjeux }}</p>
-                        <a href="#" class="btn btn-primary">Voir les détails</a>
+                        <a href="{{ path('products_details', {"slug": product.slug}) }}" class="btn btn-primary">Voir les détails</a>
                     </article>
                 </div>
             {% endfor %}     

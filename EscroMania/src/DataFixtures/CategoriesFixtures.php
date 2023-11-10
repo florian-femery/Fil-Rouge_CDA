@@ -20,32 +20,10 @@ class CategoriesFixtures extends Fixture
     {
 
         $parent = $this->createCategory('Console', null, $manager);
-        $this->createCategory('Sega Master System', $parent, $manager);
-        $this->createCategory('Nes', $parent, $manager);
-        $this->createCategory('PC', $parent, $manager);
-        $this->createCategory('Megadrive', $parent, $manager);
-        $this->createCategory('Neo Geo', $parent, $manager);
-        $this->createCategory('Super Nintendo', $parent, $manager);
-        $this->createCategory('Sega Saturn', $parent, $manager);
-        $this->createCategory('PS1', $parent, $manager);
-        $this->createCategory('Nintendo 64', $parent, $manager);
-        $this->createCategory('Dreamcast', $parent, $manager);
-        $this->createCategory('PS2', $parent, $manager);
-        $this->createCategory('Gamecube', $parent, $manager);
-        $this->createCategory('Xbox', $parent, $manager); 
-        $this->createCategory('Wii', $parent, $manager);
-        $this->createCategory('Xbox 360', $parent, $manager);
-        $this->createCategory('PS3', $parent, $manager);        
-        $this->createCategory('Wii U', $parent, $manager);
-        $this->createCategory('Switch', $parent, $manager);
-        $this->createCategory('Xbox One ', $parent, $manager);
-        $this->createCategory('Xbox One S', $parent, $manager);
-        $this->createCategory('PS4', $parent, $manager);
-        $this->createCategory('PS4 Pro', $parent, $manager);
-        $this->createCategory('Xbox One X', $parent, $manager);
-        $this->createCategory('PS5', $parent, $manager);
-        $this->createCategory('Xbox Series X', $parent, $manager);
-        $this->createCategory('Xbox Series S', $parent, $manager);        
+        $this->createCategory('Sega', $parent, $manager);
+        $this->createCategory('Nintendo', $parent, $manager);
+        $this->createCategory('Sony', $parent, $manager);
+        $this->createCategory('Microsoft', $parent, $manager);      
 
 
         $parent2 = $this->createCategory('Game', null, $manager);
