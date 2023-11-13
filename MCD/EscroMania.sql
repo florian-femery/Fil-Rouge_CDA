@@ -24,13 +24,34 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
-  `description` longtext NOT NULL,
+  `category_order` int(11) DEFAULT NULL,
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_3AF34668727ACA70` (`parent_id`),
-  CONSTRAINT `FK_3AF34668727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `FK_3AF34668727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.categories : ~19 rows (environ)
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `category_order`, `slug`) VALUES
+	(1, NULL, 'Game', 1, 'game'),
+	(2, 1, 'Action', 2, 'action'),
+	(3, 1, 'Aventure', 3, 'aventure'),
+	(4, 1, 'Stratégie', 4, 'strategie'),
+	(5, 1, 'FPS', 5, 'fps'),
+	(6, 1, 'Sport', 6, 'sport'),
+	(7, 1, 'Sandbox', 7, 'sandbox'),
+	(8, 1, 'Plateforme', 8, 'plateforme'),
+	(9, 1, 'Action Adventure', 9, 'action-adventure'),
+	(10, 1, 'RPG', 10, 'rpg'),
+	(11, 1, 'Battle Royal', 11, 'battle-royal'),
+	(12, 1, 'Survival Horror', 12, 'survival-horror'),
+	(13, 1, 'Combat', 13, 'combat'),
+	(14, 1, 'Party', 14, 'party'),
+	(15, NULL, 'Console', 15, 'console'),
+	(16, 15, 'Sega', 16, 'sega'),
+	(17, 15, 'Nintendo', 17, 'nintendo'),
+	(18, 15, 'Sony', 18, 'sony'),
+	(19, 15, 'Microsoft', 19, 'microsoft');
 
 -- Listage de la structure de table EscroMania. coupons
 CREATE TABLE IF NOT EXISTS `coupons` (
@@ -42,14 +63,14 @@ CREATE TABLE IF NOT EXISTS `coupons` (
   `max_usage` int(11) NOT NULL,
   `validity` datetime NOT NULL DEFAULT current_timestamp() COMMENT '(DC2Type:datetime_immutable)',
   `is_valid` tinyint(1) NOT NULL,
-  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '(DC2Type:datetime_immutable)',
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_F564111877153098` (`code`),
   KEY `IDX_F56411183DDD47B7` (`coupons_types_id`),
   CONSTRAINT `FK_F56411183DDD47B7` FOREIGN KEY (`coupons_types_id`) REFERENCES `coupons_types` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.coupons : ~0 rows (environ)
 
 -- Listage de la structure de table EscroMania. coupons_types
 CREATE TABLE IF NOT EXISTS `coupons_types` (
@@ -58,29 +79,7 @@ CREATE TABLE IF NOT EXISTS `coupons_types` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
-
--- Listage de la structure de table EscroMania. doctrine_migration_versions
-CREATE TABLE IF NOT EXISTS `doctrine_migration_versions` (
-  `version` varchar(191) NOT NULL,
-  `executed_at` datetime DEFAULT NULL,
-  `execution_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
-
--- Les données exportées n'étaient pas sélectionnées.
-
--- Listage de la structure de table EscroMania. fournisseurs
-CREATE TABLE IF NOT EXISTS `fournisseurs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `namefourni` varchar(255) NOT NULL,
-  `adressefourni` varchar(255) NOT NULL,
-  `phonefourni` varchar(10) NOT NULL,
-  `mailfourni` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.coupons_types : ~0 rows (environ)
 
 -- Listage de la structure de table EscroMania. images
 CREATE TABLE IF NOT EXISTS `images` (
@@ -90,9 +89,40 @@ CREATE TABLE IF NOT EXISTS `images` (
   PRIMARY KEY (`id`),
   KEY `IDX_E01FBE6A6C8A81A9` (`products_id`),
   CONSTRAINT `FK_E01FBE6A6C8A81A9` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.images : ~30 rows (environ)
+INSERT INTO `images` (`id`, `products_id`, `name`) VALUES
+	(1, 1, 'the-legend-of-zelda-breath-of-the-wild-cover.jpg'),
+	(2, 1, 'the-legend-of-zelda-breath-of-the-wild-image.jpg'),
+	(3, 1, 'the-legend-of-zelda-breath-of-the-wild-Jaquette.jpg'),
+	(4, 2, 'the_witcher_3_wild_hunt_cover.jpg'),
+	(5, 2, 'the-witcher-3-wild-hunt-image.jpg'),
+	(6, 2, 'the-witcher-3-wild-hunt-jaquette.jpeg'),
+	(7, 3, 'red-dead-redemption-2-cover.jpg'),
+	(8, 3, 'red-dead-redemption-2-image.jpg'),
+	(9, 3, 'red-dead-redemption-2-jaquette.jpg'),
+	(10, 4, 'dark-souls-iii-cover.jpg'),
+	(11, 4, 'dark-souls-iii-image.jpg'),
+	(12, 4, 'dark-souls-iii-jaquette.jpg'),
+	(13, 5, 'overwatch-jaquette.png'),
+	(14, 5, 'overwatch-image.png'),
+	(15, 5, 'overwatch-jaquette.png'),
+	(16, 6, 'uncharted-4-a-thiefs-end-jaquette.jpg'),
+	(17, 6, 'uncharted-4-a-thiefs-end-image.jpg'),
+	(18, 6, 'uncharted-4-a-thiefs-end-jaquette.jpg'),
+	(19, 7, 'horizon-zero-dawn-jaquette.jpg'),
+	(20, 7, 'horizon-zero-dawn-image.jpg'),
+	(21, 7, 'horizon-zero-dawn-jaquette.jpg'),
+	(22, 8, 'persona-5-aquette.jpg'),
+	(23, 8, 'persona-5-image.png'),
+	(24, 8, 'persona-5-jaquette.jpg'),
+	(25, 9, 'grand-theft-auto-v-aquette.jpg'),
+	(26, 9, 'grand-theft-auto-v-image.jpg'),
+	(27, 9, 'grand-theft-auto-v-jaquette.jpg'),
+	(28, 10, 'god-of-war-2018-aquette.jpg'),
+	(29, 10, 'god-of-war-2018-image.jpg'),
+	(30, 10, 'god-of-war-2018-jaquette.jpg');
 
 -- Listage de la structure de table EscroMania. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -100,16 +130,16 @@ CREATE TABLE IF NOT EXISTS `messenger_messages` (
   `body` longtext NOT NULL,
   `headers` longtext NOT NULL,
   `queue_name` varchar(190) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `available_at` datetime NOT NULL,
-  `delivered_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `available_at` datetime NOT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `delivered_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
   PRIMARY KEY (`id`),
   KEY `IDX_75EA56E0FB7336F0` (`queue_name`),
   KEY `IDX_75EA56E0E3BD61CE` (`available_at`),
   KEY `IDX_75EA56E016BA31DB` (`delivered_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.messenger_messages : ~0 rows (environ)
 
 -- Listage de la structure de table EscroMania. orders
 CREATE TABLE IF NOT EXISTS `orders` (
@@ -126,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   CONSTRAINT `FK_E52FFDEE6D72B15C` FOREIGN KEY (`coupons_id`) REFERENCES `coupons` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.orders : ~0 rows (environ)
 
 -- Listage de la structure de table EscroMania. orders_details
 CREATE TABLE IF NOT EXISTS `orders_details` (
@@ -141,27 +171,36 @@ CREATE TABLE IF NOT EXISTS `orders_details` (
   CONSTRAINT `FK_835379F1CFFE9AD6` FOREIGN KEY (`orders_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.orders_details : ~0 rows (environ)
 
 -- Listage de la structure de table EscroMania. products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categories_id` int(11) NOT NULL,
-  `fournisseurs_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `plateforme` varchar(50) NOT NULL,
   `descriptionjeux` longtext NOT NULL,
   `price` int(11) NOT NULL,
   `stock` int(11) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '(DC2Type:datetime_immutable)',
+  `slug` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_B3BA5A5AA21214B7` (`categories_id`),
-  KEY `IDX_B3BA5A5A27ACDDFD` (`fournisseurs_id`),
-  CONSTRAINT `FK_B3BA5A5A27ACDDFD` FOREIGN KEY (`fournisseurs_id`) REFERENCES `fournisseurs` (`id`),
   CONSTRAINT `FK_B3BA5A5AA21214B7` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.products : ~10 rows (environ)
+INSERT INTO `products` (`id`, `categories_id`, `name`, `plateforme`, `descriptionjeux`, `price`, `stock`, `created_at`, `slug`) VALUES
+	(1, 10, 'The Legend of Zelda: Breath of the Wild', 'Nintendo Switch', 'Explorez le vaste royaume d\'Hyrule et découvrez ses mystères dans ce jeu d\'action-aventure épique.', 60, 50, '2023-11-10 12:00:00', 'the-legend-of-zelda-breath-of-the-wild'),
+	(2, 10, 'The Witcher 3: Wild Hunt', 'PlayStation 4', 'Plongez dans un monde ouvert fantastique en incarnant Geralt de Riv, un chasseur de monstres.', 40, 75, '2023-11-10 12:05:00', 'the-witcher-3-wild-hunt'),
+	(3, 9, 'Red Dead Redemption 2', 'Xbox One', 'Vivez l\'épopée sauvage de l\'Ouest américain au tournant du XXe siècle en tant qu\'Arthur Morgan, hors-la-loi.', 50, 60, '2023-11-10 12:10:00', 'red-dead-redemption-2'),
+	(4, 2, 'Dark Souls III', 'PC', 'Affrontez des créatures redoutables et des boss difficiles dans ce jeu de rôle d\'action exigeant.', 30, 40, '2023-11-10 12:15:00', 'dark-souls-iii'),
+	(5, 5, 'Overwatch', 'Xbox One', 'Participez à des affrontements multijoueurs dynamiques en équipe avec un large choix de héros uniques.', 20, 80, '2023-11-10 12:20:00', 'overwatch'),
+	(6, 9, 'Uncharted 4: A Thief\'s End', 'PlayStation 4', 'Suivez Nathan Drake dans sa dernière aventure épique à la recherche de trésors perdus.', 35, 55, '2023-11-10 12:25:00', 'uncharted-4-a-thiefs-end'),
+	(7, 10, 'Horizon Zero Dawn', 'PlayStation 4', 'Explorez un monde post-apocalyptique regorgeant de créatures mécaniques dans ce jeu de rôle d\'action.', 40, 70, '2023-11-10 12:30:00', 'horizon-zero-dawn'),
+	(8, 10, 'Persona 5', 'PlayStation 4', 'Plongez dans la vie d\'un lycéen à Tokyo qui découvre ses pouvoirs surnaturels dans ce jeu de rôle japonais.', 50, 65, '2023-11-10 12:35:00', 'persona-5'),
+	(9, 9, 'Grand Theft Auto V', 'PC', 'Explorez la ville de Los Santos et ses environs dans cette aventure criminelle épique en monde ouvert.', 30, 45, '2023-11-10 12:40:00', 'grand-theft-auto-v'),
+	(10, 9, 'God of War (2018)', 'PlayStation 4', 'Incarnant Kratos, le dieu de la guerre, partez dans une quête mythique avec votre fils Atreus dans ce jeu d\'action-aventure.', 45, 60, '2023-11-10 12:45:00', 'god-of-war-2018');
 
 -- Listage de la structure de table EscroMania. users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -175,12 +214,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   `zipcode` varchar(5) NOT NULL,
   `city` varchar(150) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT '(DC2Type:datetime_immutable)',
-  `phone` varchar(10) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_1483A5E9E7927C74` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Les données exportées n'étaient pas sélectionnées.
+-- Listage des données de la table EscroMania.users : ~6 rows (environ)
+INSERT INTO `users` (`id`, `email`, `roles`, `password`, `lastname`, `firstname`, `addresse`, `zipcode`, `city`, `created_at`) VALUES
+	(1, 'florianfemery1@gmail.com', '["ROLE_ADMIN"]', '$2y$13$.8chS0l0NsUYwd3QU7N9OOOixo6a4ulG0m8V7jlNZK.HTTVcMLb6.', 'ADMIN', 'Afpa', '69 rue du Finister', '80080', 'Amiens', '2023-11-09 15:24:55'),
+	(2, 'iferreira@regnier.com', '["ROLE_user"]', '$2y$13$Lh908Rt0mWKIyk6RIcPiVeBchtmdZKTMVdrVu5kmDKgd7xVls0qRO', 'Ferrand', 'Michèle', '772, place Roux', '59320', 'Lesage', '2023-11-09 15:24:55'),
+	(3, 'duhamel.audrey@perrin.fr', '["ROLE_user"]', '$2y$13$VYostUbKPhGNw2cin2rvne5HWtt1a2vYqC9m..73JpG8QxHM52VxG', 'Guichard', 'David', '35, chemin Guillot', '23907', 'Lemaitre-sur-Mer', '2023-11-09 15:24:56'),
+	(4, 'luc15@free.fr', '["ROLE_user"]', '$2y$13$hJRj0ZuTCQ0cDNFoTEHrsuHsAcjJTG34ATbYWnaazS.AEh/DsC5IG', 'Caron', 'Émile', '6, place Thibault', '22577', 'Gomes', '2023-11-09 15:24:56'),
+	(5, 'carpentier.oceane@fischer.fr', '["ROLE_user"]', '$2y$13$X53NZmtKi1PSRTsQRs/TiOHSIMK1v7p58wdV/dTfnbmvYr2oebApi', 'Brun', 'Adélaïde', '6, place Lefort', '66969', 'Richard-sur-Barre', '2023-11-09 15:24:57'),
+	(6, 'rodriguez.lucy@gmail.com', '["ROLE_user"]', '$2y$13$3qhVmY4O5.ZSb.OZhpx13eTJdg50ImxrC1pceig/iSwAD44yzW5lm', 'Bonnin', 'Paul', 'chemin Chretien', '25661', 'Tessier', '2023-11-09 15:24:57');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
