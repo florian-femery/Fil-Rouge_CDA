@@ -91,38 +91,68 @@ CREATE TABLE IF NOT EXISTS `images` (
   CONSTRAINT `FK_E01FBE6A6C8A81A9` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table EscroMania.images : ~30 rows (environ)
+-- Listage des données de la table EscroMania.images : ~60 rows (environ)
 INSERT INTO `images` (`id`, `products_id`, `name`) VALUES
 	(1, 1, 'the-legend-of-zelda-breath-of-the-wild-cover.jpg'),
 	(2, 1, 'the-legend-of-zelda-breath-of-the-wild-image.jpg'),
 	(3, 1, 'the-legend-of-zelda-breath-of-the-wild-Jaquette.jpg'),
 	(4, 2, 'the_witcher_3_wild_hunt_cover.jpg'),
 	(5, 2, 'the-witcher-3-wild-hunt-image.jpg'),
-	(6, 2, 'the-witcher-3-wild-hunt-jaquette.jpeg'),
+	(6, 2, 'the-witcher-3-wild-hunt-jaquete.jpeg'),
 	(7, 3, 'red-dead-redemption-2-cover.jpg'),
 	(8, 3, 'red-dead-redemption-2-image.jpg'),
 	(9, 3, 'red-dead-redemption-2-jaquette.jpg'),
 	(10, 4, 'dark-souls-iii-cover.jpg'),
 	(11, 4, 'dark-souls-iii-image.jpg'),
 	(12, 4, 'dark-souls-iii-jaquette.jpg'),
-	(13, 5, 'overwatch-jaquette.png'),
+	(13, 5, 'overwatch-jaquete.png'),
 	(14, 5, 'overwatch-image.png'),
-	(15, 5, 'overwatch-jaquette.png'),
-	(16, 6, 'uncharted-4-a-thiefs-end-jaquette.jpg'),
+	(15, 5, 'overwatch-jaquete.png'),
+	(16, 6, 'uncharted-4-a-thiefs-end-cover.jpg'),
 	(17, 6, 'uncharted-4-a-thiefs-end-image.jpg'),
-	(18, 6, 'uncharted-4-a-thiefs-end-jaquette.jpg'),
-	(19, 7, 'horizon-zero-dawn-jaquette.jpg'),
+	(18, 6, 'uncharted-4-a-thiefs-end-jaquete.jpg'),
+	(19, 7, 'horizon-zero-dawn-cover.jpg'),
 	(20, 7, 'horizon-zero-dawn-image.jpg'),
-	(21, 7, 'horizon-zero-dawn-jaquette.jpg'),
-	(22, 8, 'persona-5-aquette.jpg'),
+	(21, 7, 'horizon-zero-dawn-jaquete.jpg'),
+	(22, 8, 'persona-5-cover.jpg'),
 	(23, 8, 'persona-5-image.png'),
-	(24, 8, 'persona-5-jaquette.jpg'),
-	(25, 9, 'grand-theft-auto-v-aquette.jpg'),
-	(26, 9, 'grand-theft-auto-v-image.jpg'),
-	(27, 9, 'grand-theft-auto-v-jaquette.jpg'),
-	(28, 10, 'god-of-war-2018-aquette.jpg'),
+	(24, 8, 'persona-5-jaquete.jpg'),
+	(25, 9, 'grand-theft-auto-v-cover.jpg'),
+	(26, 9, 'grand-theft-auto-v-image.png'),
+	(27, 9, 'grand-theft-auto-v-jaquete.jpg'),
+	(28, 10, 'god-of-war-2018-cover.jpg'),
 	(29, 10, 'god-of-war-2018-image.jpg'),
-	(30, 10, 'god-of-war-2018-jaquette.jpg');
+	(30, 10, 'god-of-war-2018-jaquete.jpg'),
+	(31, 11, 'doom-2016-cover.jpg'),
+	(32, 11, 'doom-2016-image.jpg'),
+	(33, 11, 'doom-2016-jaquette.jpg'),
+	(34, 12, 'metal-gear-solid-v-the-phantom-pain-cover.jpg'),
+	(35, 12, 'metal-gear-solid-v-the-phantom-pain-image.jpg'),
+	(36, 12, 'metal-gear-solid-v-the-phantom-pain-jaquete.jpg'),
+	(37, 13, 'resident-evil-7-biohazard-cover.jpg'),
+	(38, 13, 'resident-evil-7-biohazard-image.jpg'),
+	(39, 13, 'resident-evil-7-biohazard-jaquete.jpg'),
+	(40, 14, 'monster-hunter-world-cover.jpg'),
+	(41, 14, 'monster-hunter-world-image.jpg'),
+	(42, 14, 'monster-hunter-world-jaquete.jpg'),
+	(43, 15, 'final-fantasy-xv-cover.jpg'),
+	(44, 15, 'final-fantasy-xv-image.jpg'),
+	(45, 15, 'final-fantasy-xv-jaquete.jpg'),
+	(46, 16, 'destiny-2-cover.jpg'),
+	(47, 16, 'destiny-2-image.jpg'),
+	(48, 16, 'destiny-2-jaquete.jpg'),
+	(49, 17, 'assassins-creed-odyssey-cover.jpg'),
+	(50, 17, 'assassins-creed-odyssey-image.jpg'),
+	(51, 17, 'assassins-creed-odyssey-jaquete.jpg'),
+	(52, 18, 'bloodborne-cover.jpg'),
+	(53, 18, 'bloodborne-image.png'),
+	(54, 18, 'bloodborne-jaquete.jpg'),
+	(55, 19, 'sekiro-shadows-die-twice-cover.jpg'),
+	(56, 19, 'sekiro-shadows-die-twice-image.jpg'),
+	(57, 19, 'sekiro-shadows-die-twice-jaquete.jpg'),
+	(58, 20, 'celeste-cover.jpg'),
+	(59, 20, 'celeste-image.jpg'),
+	(60, 20, 'celeste-jaquete.jpg');
 
 -- Listage de la structure de table EscroMania. messenger_messages
 CREATE TABLE IF NOT EXISTS `messenger_messages` (
@@ -189,18 +219,28 @@ CREATE TABLE IF NOT EXISTS `products` (
   CONSTRAINT `FK_B3BA5A5AA21214B7` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Listage des données de la table EscroMania.products : ~10 rows (environ)
+-- Listage des données de la table EscroMania.products : ~20 rows (environ)
 INSERT INTO `products` (`id`, `categories_id`, `name`, `plateforme`, `descriptionjeux`, `price`, `stock`, `created_at`, `slug`) VALUES
-	(1, 10, 'The Legend of Zelda: Breath of the Wild', 'Nintendo Switch', 'Explorez le vaste royaume d\'Hyrule et découvrez ses mystères dans ce jeu d\'action-aventure épique.', 60, 50, '2023-11-10 12:00:00', 'the-legend-of-zelda-breath-of-the-wild'),
-	(2, 10, 'The Witcher 3: Wild Hunt', 'PlayStation 4', 'Plongez dans un monde ouvert fantastique en incarnant Geralt de Riv, un chasseur de monstres.', 40, 75, '2023-11-10 12:05:00', 'the-witcher-3-wild-hunt'),
-	(3, 9, 'Red Dead Redemption 2', 'Xbox One', 'Vivez l\'épopée sauvage de l\'Ouest américain au tournant du XXe siècle en tant qu\'Arthur Morgan, hors-la-loi.', 50, 60, '2023-11-10 12:10:00', 'red-dead-redemption-2'),
-	(4, 2, 'Dark Souls III', 'PC', 'Affrontez des créatures redoutables et des boss difficiles dans ce jeu de rôle d\'action exigeant.', 30, 40, '2023-11-10 12:15:00', 'dark-souls-iii'),
-	(5, 5, 'Overwatch', 'Xbox One', 'Participez à des affrontements multijoueurs dynamiques en équipe avec un large choix de héros uniques.', 20, 80, '2023-11-10 12:20:00', 'overwatch'),
-	(6, 9, 'Uncharted 4: A Thief\'s End', 'PlayStation 4', 'Suivez Nathan Drake dans sa dernière aventure épique à la recherche de trésors perdus.', 35, 55, '2023-11-10 12:25:00', 'uncharted-4-a-thiefs-end'),
-	(7, 10, 'Horizon Zero Dawn', 'PlayStation 4', 'Explorez un monde post-apocalyptique regorgeant de créatures mécaniques dans ce jeu de rôle d\'action.', 40, 70, '2023-11-10 12:30:00', 'horizon-zero-dawn'),
-	(8, 10, 'Persona 5', 'PlayStation 4', 'Plongez dans la vie d\'un lycéen à Tokyo qui découvre ses pouvoirs surnaturels dans ce jeu de rôle japonais.', 50, 65, '2023-11-10 12:35:00', 'persona-5'),
-	(9, 9, 'Grand Theft Auto V', 'PC', 'Explorez la ville de Los Santos et ses environs dans cette aventure criminelle épique en monde ouvert.', 30, 45, '2023-11-10 12:40:00', 'grand-theft-auto-v'),
-	(10, 9, 'God of War (2018)', 'PlayStation 4', 'Incarnant Kratos, le dieu de la guerre, partez dans une quête mythique avec votre fils Atreus dans ce jeu d\'action-aventure.', 45, 60, '2023-11-10 12:45:00', 'god-of-war-2018');
+	(1, 10, 'The Legend of Zelda: Breath of the Wild', 'Nintendo Switch', 'Explorez le vaste royaume d\'Hyrule et découvrez ses mystères dans ce jeu d\'action-aventure épique.', 5999, 50, '2023-11-10 12:00:00', 'the-legend-of-zelda-breath-of-the-wild'),
+	(2, 10, 'The Witcher 3: Wild Hunt', 'PlayStation 4', 'Plongez dans un monde ouvert fantastique en incarnant Geralt de Riv, un chasseur de monstres.', 3999, 75, '2023-11-10 12:05:00', 'the-witcher-3-wild-hunt'),
+	(3, 9, 'Red Dead Redemption 2', 'Xbox One', 'Vivez l\'épopée sauvage de l\'Ouest américain au tournant du XXe siècle en tant qu\'Arthur Morgan, hors-la-loi.', 4999, 60, '2023-11-10 12:10:00', 'red-dead-redemption-2'),
+	(4, 2, 'Dark Souls III', 'PC', 'Affrontez des créatures redoutables et des boss difficiles dans ce jeu de rôle d\'action exigeant.', 2999, 40, '2023-11-10 12:15:00', 'dark-souls-iii'),
+	(5, 5, 'Overwatch', 'Xbox One', 'Participez à des affrontements multijoueurs dynamiques en équipe avec un large choix de héros uniques.', 1999, 80, '2023-11-10 12:20:00', 'overwatch'),
+	(6, 9, 'Uncharted 4: A Thief\'s End', 'PlayStation 4', 'Suivez Nathan Drake dans sa dernière aventure épique à la recherche de trésors perdus.', 3499, 55, '2023-11-10 12:25:00', 'uncharted-4-a-thiefs-end'),
+	(7, 10, 'Horizon Zero Dawn', 'PlayStation 4', 'Explorez un monde post-apocalyptique regorgeant de créatures mécaniques dans ce jeu de rôle d\'action.', 3999, 70, '2023-11-10 12:30:00', 'horizon-zero-dawn'),
+	(8, 10, 'Persona 5', 'PlayStation 4', 'Plongez dans la vie d\'un lycéen à Tokyo qui découvre ses pouvoirs surnaturels dans ce jeu de rôle japonais.', 4999, 65, '2023-11-10 12:35:00', 'persona-5'),
+	(9, 9, 'Grand Theft Auto V', 'PC', 'Explorez la ville de Los Santos et ses environs dans cette aventure criminelle épique en monde ouvert.', 2999, 45, '2023-11-10 12:40:00', 'grand-theft-auto-v'),
+	(10, 9, 'God of War (2018)', 'PlayStation 4', 'Incarnant Kratos, le dieu de la guerre, partez dans une quête mythique avec votre fils Atreus dans ce jeu d\'action-aventure.', 4499, 60, '2023-11-10 12:45:00', 'god-of-war-2018'),
+	(11, 5, 'Doom (2016)', 'PC', 'Affrontez des hordes démoniaques dans ce jeu de tir à la première personne intense et frénétique.', 3999, 55, '2023-11-10 13:00:00', 'doom-2016'),
+	(12, 9, 'Metal Gear Solid V: The Phantom Pain', 'PlayStation 4', 'Incarnez Big Boss dans ce jeu d\'infiltration captivant se déroulant dans un monde ouvert.', 4999, 65, '2023-11-10 13:05:00', 'metal-gear-solid-v-the-phantom-pain'),
+	(13, 12, 'Resident Evil 7: Biohazard', 'Xbox One', 'Plongez dans l\'horreur survivaliste alors que vous explorez une demeure sinistre et affrontez des horreurs biologiques.', 2999, 70, '2023-11-10 13:10:00', 'resident-evil-7-biohazard'),
+	(14, 2, 'Monster Hunter: World', 'PlayStation 4', 'Chassez des monstres épiques et forgez votre chemin vers la grandeur dans ce jeu de rôle d\'action en monde ouvert.', 4499, 60, '2023-11-10 13:15:00', 'monster-hunter-world'),
+	(15, 2, 'Final Fantasy XV', 'Xbox One', 'Embarquez pour un voyage épique avec le prince Noctis et ses compagnons dans ce jeu de rôle fantastique.', 3999, 75, '2023-11-10 13:20:00', 'final-fantasy-xv'),
+	(16, 5, 'Destiny 2', 'PC', 'Plongez dans un monde de science-fiction en tant que Gardien, défendant la dernière cité de la Terre contre des forces mystérieuses.', 2999, 80, '2023-11-10 13:25:00', 'destiny-2'),
+	(17, 9, 'Assassin\'s Creed Odyssey', 'PlayStation 4', 'Explorez la Grèce antique et vivez une aventure épique en tant que mercenaire dans ce jeu d\'action-aventure.', 3499, 55, '2023-11-10 13:30:00', 'assassins-creed-odyssey'),
+	(18, 2, 'Bloodborne', 'PlayStation 4', 'Affrontez des cauchemars et des créatures terrifiantes dans ce jeu d\'action RPG brutal.', 4499, 65, '2023-11-10 13:35:00', 'bloodborne'),
+	(19, 9, 'Sekiro: Shadows Die Twice', 'PC', 'Devenez le "Loup à un bras" dans ce jeu d\'action aventure intense et exigeant.', 4999, 50, '2023-11-10 13:40:00', 'sekiro-shadows-die-twice'),
+	(20, 8, 'Celeste', 'Nintendo Switch', 'Partez dans un voyage difficile et émotionnel à travers une montagne mystique dans ce jeu de plateforme.', 1999, 75, '2023-11-10 13:45:00', 'celeste');
 
 -- Listage de la structure de table EscroMania. users
 CREATE TABLE IF NOT EXISTS `users` (
