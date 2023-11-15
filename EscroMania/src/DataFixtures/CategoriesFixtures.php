@@ -19,13 +19,6 @@ class CategoriesFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
 
-        $parent = $this->createCategory('Console', null, $manager);
-        $this->createCategory('Sega', $parent, $manager);
-        $this->createCategory('Nintendo', $parent, $manager);
-        $this->createCategory('Sony', $parent, $manager);
-        $this->createCategory('Microsoft', $parent, $manager);      
-
-
         $parent2 = $this->createCategory('Game', null, $manager);
         $this->createCategory('Action', $parent2, $manager);
         $this->createCategory('Aventure', $parent2, $manager);
@@ -40,6 +33,14 @@ class CategoriesFixtures extends Fixture
         $this->createCategory('Survival Horror', $parent2, $manager);
         $this->createCategory('Combat', $parent2, $manager);
         $this->createCategory('Party', $parent2, $manager);
+
+        $parent = $this->createCategory('Console', null, $manager);
+        $this->createCategory('Sega', $parent, $manager);
+        $this->createCategory('Nintendo', $parent, $manager);
+        $this->createCategory('Sony', $parent, $manager);
+        $this->createCategory('Microsoft', $parent, $manager);      
+
+
 
         $manager->flush();
     }
