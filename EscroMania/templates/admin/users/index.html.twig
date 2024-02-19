@@ -16,8 +16,6 @@
                             <th>Nom</th>
                             <th>Email</th>
                             <th>Rôles</th>
-                            <th>Vérifié</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,14 +41,7 @@
                                     {% endfor %}
                                     
                                 </td>
-                                <td>
-                                    <div class="form-check form-switch">
-                                        <label class="form-check-label" for="switch{{ user.id }}"></label>
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-success">Modifier</a>
-                                </td>
+
                             </tr>
                         {% endfor %}
                     </tbody>

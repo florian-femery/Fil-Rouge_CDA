@@ -13,7 +13,7 @@
                         <div class="carousel-inner">
                             {% for images in product.images %}
                                 <div class="carousel-item {{ (loop.index0 == 0 ) ? 'active' : ''}}">
-                                    <img src="{{ asset('assets/uploads/products/') ~ images.name }}" class="d-block w-100" alt="{{ product.name }}">
+                                    <img src="{{ asset('assets/uploads/products/mini/300x300-') ~ images.name }}" class="d-block w-100" alt="{{ product.name }}">
                                 </div>
                             {% endfor %}
                         </div>
